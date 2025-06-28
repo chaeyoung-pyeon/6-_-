@@ -1,0 +1,20 @@
+N, S = map(int, input().split())
+arr = list(map(int, input().split()))
+
+count = 0
+
+def dfs(index, current_sum, picked):
+    global count
+    if index == N:
+        if current_sum == S and picked:
+            count += 1
+        return
+
+    # 현재 인덱스를 포함하는 경우
+    dfs(index + 1, current_sum + arr[index], True)
+
+    # 포함하지 않는 경우
+    dfs(index + 1, current_sum, picked)
+
+dfs(0, 0, False)
+print(count)
